@@ -1,6 +1,7 @@
 fn usage() {
     println!("Usage: template [file] ($var=val)*");
-    println!("Eg: template in.txt (idk=\"I don't know\")");
+    println!("Eg: template in.txt ($idk=\"I don't know\")");
+    println!("The $ sign before variables is optional but recommended")
     std::process::exit(1);
 }
 

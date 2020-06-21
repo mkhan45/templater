@@ -21,3 +21,9 @@ Lorem ipsum dolor stand amet, consectetur adipiscing elit, sed do eiusmod tempor
 ___
 
 This program doesn't replace everything simultaneously, so it can override previous changes. Because of this, it's recommended to use something to mark you format words. This has the useful side effect of making it faster.
+
+# building
+
+1. Clone the repository, download Rust/Cargo with [rustup](https://rustup.rs/)
+2. `cargo build --release`
+3. The binary is in the target/release directory
