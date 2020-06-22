@@ -1,21 +1,24 @@
 fn usage() {
     println!("Usage: template [file] ($var=val)*");
     println!("Eg: template in.txt ($idk=\"I don't know\")");
-    println!("The $ sign before variables is optional but recommended")
+    println!("The $ sign before variables is optional but recommended");
     std::process::exit(1);
 }
 
-fn template(filename: &String, var_strs: &[String]) {
-    let mut file_str = std::fs::read_to_string(filename).expect("Invalid file");
+fn template(filename_or_string: &String, var_strs: &[String]) {
+    let mut template_str = match std::fs::read_to_string(filename_or_string) {
+        Ok(s) => s,
+        Err(_) => filename_or_string.to_owned(),
+    };
 
     var_strs.iter().for_each(|in_str| {
         let mut split = in_str.splitn(2, '=');
         let (pattern, replacement) = (split.next().unwrap(), split.next().unwrap());
 
-        file_str = file_str.replace(pattern, replacement);
+        template_str = template_str.replace(pattern, replacement);
     });
 
-    println!("{}", file_str);
+    print!("{}", template_str);
     std::process::exit(0);
 }
 
@@ -25,7 +28,7 @@ fn main() {
     let args: &[String] = arg_vec.as_slice();
 
     match args {
-        [_, filename, var_strs @ ..] => template(filename, var_strs),
+        [_, filename_or_string, var_strs @ ..] => template(filename_or_string, var_strs),
         _ => usage(),
     }
 }
