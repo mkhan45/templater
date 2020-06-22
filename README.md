@@ -2,7 +2,7 @@
 
 Super simple templater for scripts
 
-Usage: `template [file] (var=val)*`
+Usage: `template [file|string] (var=val)*`
 
 e.g Take loremipsum.txt:
 ```
@@ -25,6 +25,12 @@ labore et dolore magna aliqua. Ut enim ad minim ve niam, quis nostrud exercitati
 nisi ut aliquip ex ea komodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
 culpa qui officia deserunt mollit anim id est laborum.
+```
+
+It also works on arbitrary strings
+```shell
+~/templater Δ templater "I like cookies" "like=love"
+I love cookies
 ```
 ___
 
